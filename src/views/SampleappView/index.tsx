@@ -21,7 +21,7 @@ export function SampleappView() {
         setResult(data.message);
     };
      // 追加③
-    
+
   return (
     <div style={{ maxWidth: 400, margin: "40px auto", textAlign: "center" }}>
       <h1>SampleApp</h1>
