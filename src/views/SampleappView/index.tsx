@@ -30,11 +30,28 @@ export function SampleappView() {
             body: JSON.stringify({message: message, item: item}),
         });
 
+        console.log("response", response)
+
         const data = await response.json();
+
+        console.log("data", data)
 
         // バリデーションエラーの時
         if (!response.ok) {
-            const errorList = [data.errors?.message, data.errors?.item].filter(Boolean); // 存在するエラーのみ抽出
+            // const errorList = [data.errors?.message, data.errors?.item].filter(Boolean); // 存在するエラーのみ抽出
+
+            const errorList: string[] = [];
+
+            console.log("41", data.errors)
+
+            if (data.errors?.message) {
+                errorList.push(...Object.values(data.errors.message)as string[]);
+            }
+
+            if (data.errors?.item) {
+                errorList.push(...Object.values(data.errors.item)as string[]);
+            }
+
             setErrorMessage(errorList.length > 0 ? errorList.join(", ") : "エラーがあります");
             return;
         }
